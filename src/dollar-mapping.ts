@@ -1,5 +1,5 @@
-import { Transfer } from '../../generated/Dollar/Dollar';
-import { Account } from '../../generated/schema';
+import { Transfer } from '../generated/Dollar/Dollar';
+import { Account } from '../generated/schema';
 
 // export function handleNewGravatar(event: NewGravatar): void {
 //   let gravatar = new Gravatar(event.params.id.toHex())

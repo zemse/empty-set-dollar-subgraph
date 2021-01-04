@@ -23,7 +23,7 @@ dataSources:
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleDollarTransfer
-      file: ./src/mapping.ts
+      file: ./src/dollar-mapping.ts
   # - kind: ethereum/contract
   #   name: DAO
   #   network: mainnet
