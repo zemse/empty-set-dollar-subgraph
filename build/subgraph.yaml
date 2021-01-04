@@ -1,27 +1,26 @@
 specVersion: 0.0.2
-description: Gravatar for Ethereum
-repository: https://github.com/graphprotocol/example-subgraph
+description: Empty Set Dollar
+repository: https://github.com/zemse/empty-set-dollar-subgraph
 schema:
   file: schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Gravity
+    name: Dollar
     network: mainnet
     source:
-      address: "0x2E645469f354BB4F5c8a05B3b30A929361cf77eC"
-      abi: Gravity
+      address: "0x36F3FD68E7325a35EB768F1AedaAe9EA0689d723"
+      abi: Dollar
+      startBlock: 10722553
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - Gravatar
+        - Dollar
       abis:
-        - name: Gravity
-          file: Gravity/abis/Gravity.json
+        - name: Dollar
+          file: Dollar/abis/Dollar.json
       eventHandlers:
-        - event: NewGravatar(uint256,address,string,string)
-          handler: handleNewGravatar
-        - event: UpdatedGravatar(uint256,address,string,string)
-          handler: handleUpdatedGravatar
-      file: Gravity/Gravity.wasm
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleDollarTransfer
+      file: Dollar/Dollar.wasm

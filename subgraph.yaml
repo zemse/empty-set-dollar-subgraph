@@ -1,27 +1,77 @@
 specVersion: 0.0.2
-description: Gravatar for Ethereum
-repository: https://github.com/graphprotocol/example-subgraph
+description: Empty Set Dollar
+repository: https://github.com/zemse/empty-set-dollar-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: Gravity
+    name: Dollar
     network: mainnet
     source:
-      address: '0x2E645469f354BB4F5c8a05B3b30A929361cf77eC'
-      abi: Gravity
+      address: '0x36F3FD68E7325a35EB768F1AedaAe9EA0689d723'
+      abi: Dollar
+      startBlock: 10722553
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - Gravatar
+        - Dollar
       abis:
-        - name: Gravity
-          file: ./abis/Gravity.json
+        - name: Dollar
+          file: ./abis/Dollar.json
       eventHandlers:
-        - event: NewGravatar(uint256,address,string,string)
-          handler: handleNewGravatar
-        - event: UpdatedGravatar(uint256,address,string,string)
-          handler: handleUpdatedGravatar
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleDollarTransfer
       file: ./src/mapping.ts
+  # - kind: ethereum/contract
+  #   name: DAO
+  #   network: mainnet
+  #   source:
+  #     address: '0x443D2f2755DB5942601fa062Cc248aAA153313D3'
+  #     abi: DAO
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.4
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - DAO
+  #     abis:
+  #       - name: DAO
+  #         file: ./abis/Implementation.json
+  #     eventHandlers:
+  #       - event: Bond(indexed address,uint256,uint256,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: Unbond(indexed address,uint256,uint256,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: CouponExpiration(indexed uint256,uint256,uint256,uint256,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: CouponPurchase(indexed address,indexed uint256,uint256,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: CouponRedemption(indexed address,indexed uint256,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: CouponTransfer(indexed address,indexed address,indexed uint256,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: Deposit(indexed address,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: Withdraw(indexed address,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: Advance(indexed uint256,uint256,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: SupplyDecrease(indexed uint256,uint256,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: SupplyIncrease(indexed uint256,uint256,uint256,uint256,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: SupplyNeutral(indexed uint256)
+  #         handler: handleDollarTransfer
+  #       - event: Incentivization(indexed address,uint256)
+  #         handler: handleDollarTransfer
+  #       # - event: Proposal(indexed address,indexed address,indexed uint256,uint256)
+  #       #   handler: handleDollarTransfer
+  #       - event: Upgraded(indexed address)
+  #         handler: handleDollarTransfer
+  #       - event: Vote(indexed address,indexed address,uint8,uint256)
+  #         handler: handleDollarTransfer
+  #       - event: Commit(indexed address,indexed address)
+  #         handler: handleDollarTransfer
+  # file: ./src/mapping.ts

@@ -12,7 +12,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class Gravatar extends Entity {
+export class Account extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -20,17 +20,17 @@ export class Gravatar extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save Gravatar entity without an ID");
+    assert(id !== null, "Cannot save Account entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save Gravatar entity with non-string ID. " +
+      "Cannot save Account entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("Gravatar", id.toString(), this);
+    store.set("Account", id.toString(), this);
   }
 
-  static load(id: string): Gravatar | null {
-    return store.get("Gravatar", id) as Gravatar | null;
+  static load(id: string): Account | null {
+    return store.get("Account", id) as Account | null;
   }
 
   get id(): string {
@@ -42,30 +42,30 @@ export class Gravatar extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get owner(): Bytes {
-    let value = this.get("owner");
-    return value.toBytes();
+  get balance(): BigInt {
+    let value = this.get("balance");
+    return value.toBigInt();
   }
 
-  set owner(value: Bytes) {
-    this.set("owner", Value.fromBytes(value));
+  set balance(value: BigInt) {
+    this.set("balance", Value.fromBigInt(value));
   }
 
-  get displayName(): string {
-    let value = this.get("displayName");
-    return value.toString();
+  get volume(): BigInt {
+    let value = this.get("volume");
+    return value.toBigInt();
   }
 
-  set displayName(value: string) {
-    this.set("displayName", Value.fromString(value));
+  set volume(value: BigInt) {
+    this.set("volume", Value.fromBigInt(value));
   }
 
-  get imageUrl(): string {
-    let value = this.get("imageUrl");
-    return value.toString();
+  get transactionsCount(): i32 {
+    let value = this.get("transactionsCount");
+    return value.toI32();
   }
 
-  set imageUrl(value: string) {
-    this.set("imageUrl", Value.fromString(value));
+  set transactionsCount(value: i32) {
+    this.set("transactionsCount", Value.fromI32(value));
   }
 }
