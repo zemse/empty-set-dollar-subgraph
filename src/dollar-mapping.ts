@@ -31,11 +31,11 @@ export function handleDollarTransfer(event: Transfer): void {
     toAccount = new Account(to);
   }
 
-  fromAccount.balance = fromAccount.balance.minus(value);
-  toAccount.balance = toAccount.balance.plus(value);
+  fromAccount.balance = fromAccount.balance - value;
+  toAccount.balance = toAccount.balance + value;
 
-  fromAccount.volume = fromAccount.volume.plus(value);
-  toAccount.transactionsCount = toAccount.transactionsCount.plus(1);
+  fromAccount.volume = fromAccount.volume + value;
+  toAccount.transactionsCount = toAccount.transactionsCount + 1;
 
   fromAccount.save();
   toAccount.save();
